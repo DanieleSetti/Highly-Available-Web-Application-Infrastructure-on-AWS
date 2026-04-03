@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+apt update -y
+apt install -y nginx git
+
+cd /var/www/html
+rm -rf *
+
+git clone --depth 1 --filter=blob:none --sparse https://github.com/DanieleSetti/Highly-Available-Web-Application-Infrastructure-on-AWS.git
+
+cd Highly-Available-Web-Application-Infrastructure-on-AWS
+git sparse-checkout set app
+
+cp -r app/* /var/www/html/
+
+cd /
+rm -rf /var/www/html/Highly-Available-Web-Application-Infrastructure-on-AWS
+
+systemctl start nginx
+systemctl enable nginx

@@ -20,12 +20,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
-      - name: Create new Launch Template version
-        run: |
-          aws ec2 create-launch-template-version \
-            --launch-template-name web-app-template \
-            --source-version 4
-
       - name: Start Instance Refresh
         run: |
           aws autoscaling start-instance-refresh \
