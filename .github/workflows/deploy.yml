@@ -1,0 +1,39 @@
+name: Deploy to S3
+
+on: 
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Upload to S3 (main/staging) & Invalidating CloudFront cache
+        run: |
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            echo "Deploying to PRODUCTION"
+            aws s3 sync ./app s3://static-web-app-production --delete
+            DIST_ID=${{ secrets.CLOUDFRONT_PRODUCTION_DISTRIBUTION_ID }}
+          else
+            echo "Deploying to STAGING"
+            aws s3 sync ./app s3://static-web-app-staging --delete
+            DIST_ID=${{ secrets.CLOUDFRONT_STAGING_DISTRIBUTION_ID }}
+          fi
+
+          echo "Invalidating CloudFront cache"
+          aws cloudfront create-invalidation \
+            --distribution-id $DIST_ID \
+            --paths "/*"
