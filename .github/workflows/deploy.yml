@@ -23,4 +23,4 @@ jobs:
       - name: Start Instance Refresh
         run: |
           aws autoscaling start-instance-refresh \
-            --auto-scaling-group-name web-app-ASG
+            --auto-scaling-group-name "web app ASG"
