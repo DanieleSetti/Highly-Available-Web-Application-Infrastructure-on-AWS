@@ -24,7 +24,7 @@ jobs:
         run: |
           aws ec2 create-launch-template-version \
             --launch-template-name web-app-template \
-            --source-version $Latest
+            --source-version 4
 
       - name: Start Instance Refresh
         run: |
