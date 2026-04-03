@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - staging
 
 jobs:
   deploy:
@@ -19,21 +18,15 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: eu-north-1
 
-      - name: Upload to S3 (main/staging) & Invalidating CloudFront cache
+      - name: Create new Launch Template version
         run: |
-          if [ "${GITHUB_REF_NAME}" = "main" ]; then
-            echo "Deploying to PRODUCTION"
-            aws s3 sync ./app s3://static-web-app-production --delete
-            DIST_ID=${{ secrets.CLOUDFRONT_PRODUCTION_DISTRIBUTION_ID }}
-          else
-            echo "Deploying to STAGING"
-            aws s3 sync ./app s3://static-web-app-staging --delete
-            DIST_ID=${{ secrets.CLOUDFRONT_STAGING_DISTRIBUTION_ID }}
-          fi
+          aws ec2 create-launch-template-version \
+            --launch-template-name web-app-template \
+            --source-version $Latest
 
-          echo "Invalidating CloudFront cache"
-          aws cloudfront create-invalidation \
-            --distribution-id $DIST_ID \
-            --paths "/*"
+      - name: Start Instance Refresh
+        run: |
+          aws autoscaling start-instance-refresh \
+            --auto-scaling-group-name web-app-asg
