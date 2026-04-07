@@ -19,3 +19,7 @@ rm -rf /var/www/html/Highly-Available-Web-Application-Infrastructure-on-AWS
 
 systemctl start nginx
 systemctl enable nginx
+
+#RDS
+echo "RDSHOST=..." >> /etc/environment
+echo "DB_PASSWORD=..." >> /etc/environment

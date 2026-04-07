@@ -4,9 +4,9 @@ const { Client } = require('pg');
 const app = express();
 
 const client = new Client({
-    host: 'RDS_ENDPOINT',
+    host: 'RDSHOST',
     user: 'postgres',
-    password: 'PASSWORD',
+    password: 'DB_PASSWORD',
     port: 5432,
 });
 
