@@ -1,14 +1,6 @@
 <!doctype html>
 <html>
 
-<script>
-fetch('/visit')
-  .then(res => res.json())
-  .then(data => {
-    document.body.innerHTML += `<p>Visits: ${data.visit}</p>`;
-  });
-</script>
-
 <head>
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,6 +91,13 @@ fetch('/visit')
         </div>
         <div class="signature"> <div class="signature__text"><strong>Developed by Daniele Kostin Setti</strong></div>
     </div>
+    <script>
+    fetch('/visit')
+    .then(res => res.json())
+    .then(data => {
+        document.body.innerHTML += `<p>Visits: ${data.visit}</p>`;
+    });
+    </script>
 </body>
 
 </html>
