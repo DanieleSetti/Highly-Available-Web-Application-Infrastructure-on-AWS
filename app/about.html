@@ -1,6 +1,14 @@
 <!doctype html>
 <html>
 
+<script>
+fetch('/visit')
+  .then(res => res.json())
+  .then(data => {
+    document.body.innerHTML += `<p>Visits: ${data.visits}</p>`;
+  });
+</script>
+
 <head>
 <meta charset="UTF-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
