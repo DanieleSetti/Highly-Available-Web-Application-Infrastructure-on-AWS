@@ -340,25 +340,7 @@ Database credentials are injected via environment variables in User Data.
 
 ---
 
-### 9. S3 VPC Endpoint
-
-**Decision:**
-Enabled S3 Gateway Endpoint in the VPC.
-
-**Why:**
-
-* Reduces NAT Gateway traffic
-* Lowers cost
-* Improves network efficiency
-
-**Trade-off:**
-
-* Adds complexity to VPC configuration
-* Limited to AWS internal traffic (not general internet)
-
----
-
-### 10. Single NAT vs High Availability
+### 9. Single NAT vs High Availability
 
 **Explicit design compromise:**
 
