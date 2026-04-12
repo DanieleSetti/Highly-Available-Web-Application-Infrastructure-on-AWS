@@ -356,9 +356,6 @@ Instead of:
 
 * Keep project cost low while still demonstrating architecture understanding
 
-**Interview positioning:**
-“I used a single NAT for cost efficiency, but in production I would deploy one NAT per AZ to avoid cross-AZ dependency.”
-
 ---
 
 ### Summary
