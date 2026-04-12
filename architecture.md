@@ -47,7 +47,7 @@ The infrastructure is deployed inside a custom VPC (`10.0.0.0/16`) spanning two 
 
 Each AZ contains:
 
-* **Public Subnet** → hosts the Application Load Balancer and NAT Gateway
+* **Public Subnet** → hosts the Application Load Balancer
 * **Private Subnet** → hosts EC2 instances and RDS
 
 Key components:
