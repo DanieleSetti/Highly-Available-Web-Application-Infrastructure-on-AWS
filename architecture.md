@@ -520,6 +520,7 @@ Introduced Node.js backend:
 **Lesson:**
 Proper architecture requires separation:
 Browser → Backend → Database
+
 Direct DB exposure is both insecure and impractical.
 
 ---
