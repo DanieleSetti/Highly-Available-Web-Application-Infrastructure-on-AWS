@@ -178,17 +178,6 @@ Key characteristic:
 
 ---
 
-### Key Design Principles Demonstrated
-
-* Network isolation (public vs private subnets)
-* Controlled entry points (ALB)
-* Stateless compute + persistent data separation
-* Horizontal scalability (Auto Scaling)
-* Immutable deployments
-* Multi-AZ availability
-
-This architecture reflects common patterns used in real-world AWS environments while keeping the application layer intentionally simple.
-
 ## 3. Key Decisions & Trade-offs
 
 This project was intentionally designed to reflect real-world architectural decisions rather than simply integrating AWS services.
