@@ -480,35 +480,10 @@ Added policy allowing:
 
 **Lesson:**
 IAM errors are often misleading — even correct logic fails without explicit permissions.
-Always verify identity-based policies when debugging AWS CLI failures.
 
 ---
 
-### 6. Misuse of Launch Template Versioning
-
-**Problem:**
-Attempted to deploy application changes by creating new Launch Template versions.
-
-**Root Cause:**
-Incorrect assumption that infrastructure versioning is required for application updates.
-
-**Resolution:**
-Simplified pipeline:
-
-* removed Launch Template versioning step
-* used `start-instance-refresh` only
-
-**Lesson:**
-Clear separation is required between:
-
-* infrastructure deployment
-* application deployment
-
-Not every change requires infrastructure updates.
-
----
-
-### 7. Understanding Rolling Updates in Auto Scaling
+### 6. Understanding Rolling Updates in Auto Scaling
 
 **Problem:**
 Observed additional instances during deployment (more than desired capacity).
@@ -528,7 +503,7 @@ Rolling updates ensure zero/minimal downtime.
 
 ---
 
-### 8. Backend Integration and Data Flow
+### 7. Backend Integration and Data Flow
 
 **Problem:**
 Frontend could not directly interact with the database.
