@@ -12,7 +12,7 @@ The goal is not application complexity, but demonstrating how real-world cloud i
 
 ## Architecture
 
-![Architecture Diagram](./architecture.png)
+![Architecture Diagram](./architecture.jpg)
 
 High-level flow:
 
