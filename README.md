@@ -12,6 +12,8 @@ The goal is not application complexity, but demonstrating how real-world cloud i
 
 ## Architecture
 
+![Architecture Diagram](./architecture.png)
+
 High-level flow:
 
 Client → ALB → EC2 (Nginx + Node.js) → RDS
